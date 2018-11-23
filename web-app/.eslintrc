@@ -1,3 +1,12 @@
 {
-  "extends": ["standard", "standard-react"]
+  "extends": "airbnb",
+  "rules": {
+    "semi": ["error", "never"],
+    "comma-dangle": 0,
+    "react/jsx-filename-extension": 0
+  },
+  "globals": {
+    "document": true,
+    "window": true
+  }
 }
