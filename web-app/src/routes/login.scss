@@ -1,3 +1,16 @@
 .login {
-  
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  #form-segment {
+    width: 300px;
+  }
+
+  #error-message {
+    text-align: center;
+  }
 }
