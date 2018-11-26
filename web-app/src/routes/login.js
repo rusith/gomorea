@@ -10,7 +10,7 @@ export default () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   return (
-    <div className="form">
+    <div className="login">
       <Segment raised>
         <Form>
           <Form.Field>
