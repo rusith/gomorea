@@ -1,2 +1,5 @@
-.idea
+src/github.com
+src/golang.org
+src/labix.org
 pkg
+bin
