@@ -4,6 +4,8 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
+	"log"
 	"net/http"
 	iapi "server/app/apis"
 	aconfig "server/app/config"
@@ -44,9 +46,14 @@ func (s *Server) Run() {
 
 func main() {
 
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	container := BuildContainer()
 
-	err := container.Invoke(func(server *Server) {
+	err = container.Invoke(func(server *Server) {
 		server.Run()
 	})
 

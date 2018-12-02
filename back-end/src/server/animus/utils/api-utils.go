@@ -18,3 +18,9 @@ func (a *ApiUtils) SendJson(statusCode int, data interface{}, w http.ResponseWri
 	w.WriteHeader(statusCode)
 	json.NewEncoder(w).Encode(data)
 }
+
+func (a *ApiUtils) SendJsonError(statusCode int, err error, w http.ResponseWriter) {
+	w.Header().Add("Content-Type", "application/json")
+	w.WriteHeader(statusCode)
+	json.NewEncoder(w).Encode(err.Error())
+}

@@ -20,3 +20,7 @@ func (a *AppConfig) TokenPassword() string {
 func (a *AppConfig) Port() string {
 	return os.Getenv("port")
 }
+
+func (a *AppConfig) DatabaseUrl() string {
+	return os.Getenv("database_url")
+}
