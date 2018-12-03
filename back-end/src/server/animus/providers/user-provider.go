@@ -1,8 +1,8 @@
 package providers
 
 import (
-	"context"
-	"github.com/mongodb/mongo-go-driver/bson"
+	"github.com/globalsign/mgo"
+	"github.com/globalsign/mgo/bson"
 	"server/app/models"
 	"server/app/providers"
 )
@@ -15,16 +15,25 @@ func NewUserProvider(db providers.IDatabaseProvider) providers.IUserProvider {
 	return &UserProvider{ db }
 }
 
+func (u *UserProvider) GetCollection() (*mgo.Collection, error){
+	collection, err := u.db.GetCollection("Users")
+	return collection, err
+}
+
 func (u *UserProvider) GetByUsername(username string) (*models.User, error) {
 
-	usersCollection, err := u.db.GetCollection("Users")
+	col, err := u.GetCollection()
 	if err != nil { return nil, err }
-	result := bson.Raw{}
-	a := usersCollection.FindOne(context.Background(), bson.D{{"Username", username}})
-	a.Decode(&result)
 	user := &models.User{}
-	bson.Unmarshal([]byte(result), user)
+	err = col.Find(bson.M{"username": username}).One(user)
 	if err != nil { return nil, err }
 
 	return user, nil
+}
+
+func (u *UserProvider) Add(user *models.User) (*models.User, error) {
+	col, _ := u.GetCollection()
+	user.ID = bson.NewObjectId()
+	i := col.Insert(user)
+	return user, i
 }

@@ -1,7 +1,7 @@
 package providers
 
-import "github.com/mongodb/mongo-go-driver/mongo"
+import "github.com/globalsign/mgo"
 
 type IDatabaseProvider interface {
-	GetCollection(name string) (*mongo.Collection, error)
+	GetCollection(name string) (*mgo.Collection, error)
 }

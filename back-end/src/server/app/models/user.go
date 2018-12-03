@@ -1,9 +1,11 @@
 package models
 
-import "github.com/mongodb/mongo-go-driver/bson/objectid"
+import "github.com/globalsign/mgo/bson"
 
 type User struct {
-	Id objectid.ObjectID `json:"id"`
-	Username string `json:"username",bson:"Username,omitempty"`
-	Password string `json:"password",bson:"Password,omitempty"`
+	ID bson.ObjectId `bson:"_id,omitempty" json:"id"`
+	FirstName string `bson:"firstName" json:"firstName"`
+	LastName string `bson:"lastName" json:"lastName"`
+	Username  string `bson:"username" json:"username"`
+	Password  string `bson:"password" json:"password"`
 }
