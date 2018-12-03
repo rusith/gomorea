@@ -18,7 +18,7 @@ func (s *Server) GetJwtMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request)  {
 
 		/* Paths that don't need authentication */
-		notAuth := []string{ "/account/login", "/account/new" }
+		notAuth := []string{ "/accounts" }
 		requestPath := r.URL.Path
 
 		/* If path does not need authentication, just return */
