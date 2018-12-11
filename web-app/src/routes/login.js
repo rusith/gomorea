@@ -1,28 +1,48 @@
-
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* global XMLHttpRequest */
 import React, { useState } from 'react'
-import {
-  Button,
-  Form,
-  Segment,
-  Message
-} from 'semantic-ui-react'
+// import axios from 'axios'
+// import {
+//   Button,
+//   Form,
+//   Segment,
+//   Message
+// } from 'semantic-ui-react'
 
 export default () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  // const [username, setUsername] = useState('')
+  // const [password, setPassword] = useState('')
+  // const [errorMessage, setErrorMessage] = useState('')
 
   function handleLogInClick() {
-    if (!username || !password) {
-      return setErrorMessage('Username and password are required')
-    }
+    // if (!username || !password) {
+    //   return setErrorMessage('Username and password are required')
+    // }
 
+    const http = new XMLHttpRequest()
+    const url = 'https://api.dialog.lk/sms/send'
+    http.open('POST', url, true)
+
+    // Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/json')
+
+    http.onreadystatechange = () => {
+    }
+    http.send(JSON.parse(`{
+      "message": "Hello",
+      "destinationAddresses": ["tel:5C74B588F97"],
+      "password": "password",
+      "applicationId": "APP_999999"
+      }`))
     return null
   }
 
   return (
     <div className="login">
-      <Segment raised id="form-segment">
+      <button type="button" onClick={handleLogInClick}>App</button>
+      {/* <Segment raised id="form-segment">
         <Form>
           <Form.Field>
             <label htmlFor="username">Username</label>
@@ -41,7 +61,7 @@ export default () => {
           <Button primary onClick={handleLogInClick}>Log In</Button>
           <Button>Sign Up</Button>
         </Form>
-      </Segment>
+      </Segment> */}
     </div>
   )
 }
