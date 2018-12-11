@@ -1,5 +1,8 @@
-src/github.com
-src/golang.org
-src/labix.org
-pkg
-bin
+back-end/src/github.com
+back-end/src/golang.org
+back-end/src/labix.org
+back-end/pkg
+back-end/bin
+back-end/bin/server.exe
+back-end/src/golang.org
+back-end/src/go.uber.org
