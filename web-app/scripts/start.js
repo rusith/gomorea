@@ -1,10 +1,13 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable import/order */
 /* eslint-disable no-console */
-'use strict'
+
 
 process.env.BABEL_ENV = 'development'
 process.env.NODE_ENV = 'development'
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err
 })
 
@@ -46,7 +49,7 @@ if (process.env.HOST) {
     )
   )
   console.log(
-    `If this was unintentional, check that you haven't mistakenly set it in your shell.`
+    'If this was unintentional, check that you haven\'t mistakenly set it in your shell.'
   )
   console.log(
     `Learn more here: ${chalk.yellow('http://bit.ly/CRA-advanced-config')}`
@@ -55,11 +58,10 @@ if (process.env.HOST) {
 }
 
 const { checkBrowsers } = require('react-dev-utils/browsersHelper')
+
 checkBrowsers(paths.appPath, isInteractive)
-  .then(() => {
-    return choosePort(HOST, DEFAULT_PORT)
-  })
-  .then(port => {
+  .then(() => choosePort(HOST, DEFAULT_PORT))
+  .then((port) => {
     if (port == null) {
       return
     }
@@ -74,7 +76,7 @@ checkBrowsers(paths.appPath, isInteractive)
       urls.lanUrlForConfig
     )
     const devServer = new WebpackDevServer(compiler, serverConfig)
-    devServer.listen(port, HOST, err => {
+    devServer.listen(port, HOST, (err) => {
       if (err) {
         return console.log(err)
       }
@@ -83,16 +85,17 @@ checkBrowsers(paths.appPath, isInteractive)
       }
       console.log(chalk.cyan('Starting the development server...\n'))
       openBrowser(urls.localUrlForBrowser)
+      return null
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
-      process.on(sig, function () {
+    ['SIGINT', 'SIGTERM'].forEach((sig) => {
+      process.on(sig, () => {
         devServer.close()
         process.exit()
       })
     })
   })
-  .catch(err => {
+  .catch((err) => {
     if (err && err.message) {
       console.log(err.message)
     }

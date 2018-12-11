@@ -1,8 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import './App.css'
-import Home from './routes/home'
-import LogIn from './routes/login'
+import Home from './routes/Home'
+import LogIn from './routes/Login'
 
 export default () => (
   <div className="App">
