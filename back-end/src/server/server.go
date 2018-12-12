@@ -3,6 +3,7 @@ package main
 //noinspection SpellCheckingInspection
 import (
 	"fmt"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"log"
@@ -37,7 +38,12 @@ func (s *Server) Run() {
 	if port == "" {
 		port = "8080"
 	}
-	err := http.ListenAndServe(":" + port, router)
+
+	headersOk := handlers.AllowedHeaders([]string{"X-Request-With", "Content-Type", "Authorization"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"POST", "GET", "OPTIONS", "PUT", "DELETE"})
+
+	err := http.ListenAndServe(":" + port, handlers.CORS(originsOk, headersOk, methodsOk)(router))
 	if err != nil {
 		fmt.Print(err)
 	}

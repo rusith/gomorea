@@ -1,13 +1,12 @@
 package main
 
 import (
-	api "server/animus/apis"
 	"go.uber.org/dig"
+	api "server/animus/apis"
 	"server/animus/config"
 	"server/animus/providers"
 	"server/animus/services"
 	"server/animus/utils"
-
 )
 
 func BuildContainer() *dig.Container {

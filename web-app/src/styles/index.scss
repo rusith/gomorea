@@ -2,6 +2,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color:#ecf0f1;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -21,6 +22,12 @@ code {
   }
 }
 
+.input-err {
+  color: #9f3a38;
+  font-size: 12px;
+  margin-top: 4px
+}
+
 @import '../App.scss';
 @import '../routes/Login.scss';
-
+@import '../routes/SignUp.scss';
